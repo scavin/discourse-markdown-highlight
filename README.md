@@ -53,7 +53,7 @@ Reuses the core rich-editor mark input rule to preserve bold and links, replaces
 
 ## 0.1.2
 
-Corrects the minimum Discourse version to `2026.10.0-latest`. The previous `2026.10.0` requirement referred to the stable release and incorrectly disabled the component on October development builds, including `2026.10.0-latest +500`.
+Removes the minimum Discourse version restriction. The previous `2026.10.0` requirement referred to the stable release and incorrectly disabled the component on October development builds, including `2026.10.0-latest +500`.
 
 ## Continuous integration
 

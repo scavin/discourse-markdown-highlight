@@ -1,4 +1,4 @@
-import { COLORS, findHighlights, readColor } from "./highlight";
+import { COLORS, findHighlights, readColor } from "./highlight.js";
 
 function tokenText(token) {
   if (token.type === "text") {

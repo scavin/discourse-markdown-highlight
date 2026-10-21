@@ -4,7 +4,7 @@ import {
   decorateHighlights,
   findHighlights,
   formatSelection,
-} from "../../discourse/lib/highlight";
+} from "../../discourse/lib/highlight.js";
 
 module("Appinn highlight | webpage rendering", function () {
   test("colors, inline formatting, repeated decoration, and code boundaries", async function (assert) {

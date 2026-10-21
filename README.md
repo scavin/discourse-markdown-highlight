@@ -1,5 +1,7 @@
 # Appinn Markdown Highlight
 
+[![Discourse Theme](https://github.com/scavin/discourse-markdown-highlight/actions/workflows/discourse-theme.yml/badge.svg)](https://github.com/scavin/discourse-markdown-highlight/actions/workflows/discourse-theme.yml)
+
 A Discourse **theme component**, tested on Discourse 2026.10. No server plugin, core patch, migration, or post rebake is required.
 
 ## Usage
@@ -44,3 +46,9 @@ Run Discourse's `bin/lint --fix themes/appinn-markdown-highlight` with the compo
 ## 0.1.1
 
 Reuses the core rich-editor mark input rule to preserve bold and links, replaces the backtracking matcher with a single pass, preserves ordinary emojis on recoloring, and handles selection whitespace and unsupported cross-line selections. No dependencies or server changes were added.
+
+## Continuous integration
+
+GitHub Actions uses [Discourse’s official theme workflow](https://github.com/discourse/.github/blob/v1/.github/workflows/discourse-theme.yml) on pushes to `main`, pull requests, and manual dispatch. It runs the official lint configurations, the component’s QUnit tests against the current Discourse `latest` branch, and English locale validation. No deployment or forum credentials are needed.
+
+For local lint checks, run `pnpm install --frozen-lockfile`, then `pnpm lint:js`, `pnpm lint:css`, and `pnpm lint:prettier`. Runtime/editor tests require a Discourse development environment; the GitHub workflow provisions that environment automatically.

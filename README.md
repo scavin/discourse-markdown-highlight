@@ -1,4 +1,4 @@
-# Appinn Markdown Highlight
+# Discourse Markdown Highlight
 
 [![Discourse Theme](https://github.com/scavin/discourse-markdown-highlight/actions/workflows/discourse-theme.yml/badge.svg)](https://github.com/scavin/discourse-markdown-highlight/actions/workflows/discourse-theme.yml)
 
@@ -41,7 +41,7 @@ Visit `/theme-qunit?id=COMPONENT_ID` on a development forum, replacing `COMPONEN
 
 For a manual visual check, use `/theme-qunit?id=COMPONENT_ID&filter=menu&visual=desktop` (or `visual=mobile`). The matching test waits with the actual composer menu open. Resume it from the browser console with `window.__finishHighlightReview()`.
 
-Run Discourse's `bin/lint --fix themes/appinn-markdown-highlight` with the component copied into that directory. The 0.1.1 validation run passed 12 tests and 71 assertions, plus ESLint, Prettier, and Stylelint.
+Run Discourse's `bin/lint --fix themes/discourse-markdown-highlight` with the component copied into that directory. The 0.1.1 validation run passed 12 tests and 71 assertions, plus ESLint, Prettier, and Stylelint.
 
 ## 0.1.1
 

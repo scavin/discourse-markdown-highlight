@@ -1,0 +1,14 @@
+zh_CN:
+  theme_metadata:
+    description: "Markdown highlight colors and composer menu"
+  highlight:
+    title: "高亮颜色"
+    default: "默认"
+    red: "红色"
+    orange: "橙色"
+    yellow: "黄色"
+    green: "绿色"
+    blue: "蓝色"
+    remove: "去除高亮"
+    sample: "高亮文字"
+    single_line: "高亮暂不支持跨行，请选择单行文字。"

@@ -1,0 +1,37 @@
+@mixin highlight-palette {
+  --appinn-highlight-default: light-dark(#fff0a6, #665311);
+  --appinn-highlight-red: light-dark(#ffd4d7, #743439);
+  --appinn-highlight-orange: light-dark(#ffdfb5, #765022);
+  --appinn-highlight-yellow: light-dark(#fff0a6, #665311);
+  --appinn-highlight-green: light-dark(#d7efba, #3a592b);
+  --appinn-highlight-blue: light-dark(#cce8ff, #294f73);
+}
+
+:root {
+  @include highlight-palette;
+}
+
+.appinn-highlight {
+  color: inherit;
+  border-radius: 0.2em;
+  padding: 0.06em 0.12em;
+  box-decoration-break: clone;
+}
+
+@each $color in "default", "red", "orange", "yellow", "green", "blue" {
+  mark.appinn-highlight.appinn-highlight--#{$color} {
+    background: var(--appinn-highlight-#{$color});
+  }
+
+  [data-name="appinn-highlight-#{$color}"] .d-icon {
+    color: var(--appinn-highlight-#{$color});
+    fill: var(--appinn-highlight-#{$color});
+    stroke: var(--primary-medium);
+    stroke-width: 15px;
+  }
+}
+
+.fk-d-menu.toolbar-menu__appinn-highlight-content.toolbar-popup-menu-options {
+  min-width: 170px;
+  max-height: min(380px, 70dvh);
+}

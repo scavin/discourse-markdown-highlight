@@ -1,0 +1,7 @@
+{
+  "name": "Appinn Markdown Highlight",
+  "component": true,
+  "authors": "Appinn",
+  "theme_version": "0.1.1",
+  "minimum_discourse_version": "2026.10.0"
+}

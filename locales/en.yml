@@ -1,0 +1,14 @@
+en:
+  theme_metadata:
+    description: "Markdown highlight colors and composer menu"
+  highlight:
+    title: "Highlight"
+    default: "Default"
+    red: "Red"
+    orange: "Orange"
+    yellow: "Yellow"
+    green: "Green"
+    blue: "Blue"
+    remove: "Remove highlight"
+    sample: "Highlighted text"
+    single_line: "Select text within a single line to highlight."

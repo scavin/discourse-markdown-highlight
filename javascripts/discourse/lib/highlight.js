@@ -98,6 +98,37 @@ export function formatSelection(event, color) {
   return true;
 }
 
+export function openHighlightMenu(event) {
+  const input = event.target;
+  if (
+    !input.matches?.("textarea.d-editor-input") ||
+    input.disabled ||
+    input.readOnly ||
+    event.button !== 0 ||
+    event.detail > 1 ||
+    event.shiftKey ||
+    event.ctrlKey ||
+    event.metaKey ||
+    event.altKey ||
+    input.selectionStart !== input.selectionEnd
+  ) {
+    return;
+  }
+  const position = input.selectionStart;
+  const match = findHighlights(input.value).find(
+    (highlight) =>
+      position >= highlight.start && position <= highlight.start + 2
+  );
+  const button = input
+    .closest(".d-editor-container")
+    ?.querySelector("button.appinn-highlight");
+  if (!match || !button) {
+    return;
+  }
+  input.setSelectionRange(match.from, match.to);
+  button.click();
+}
+
 const SKIP =
   "pre, code, kbd, script, style, textarea, mark, .onebox, .lightbox-wrapper";
 const BLOCK = "p, li, h1, h2, h3, h4, h5, h6, td, th, summary, blockquote, div";

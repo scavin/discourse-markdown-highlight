@@ -1,13 +1,19 @@
+import { registerDestructor } from "@ember/destroyable";
 import { apiInitializer } from "discourse/lib/api";
 import { i18n } from "discourse-i18n";
 import {
   COLORS,
   decorateHighlights,
   formatSelection,
+  openHighlightMenu,
 } from "../lib/highlight.js";
 import richEditorExtension from "../lib/rich-editor-extension.js";
 
 export default apiInitializer((api) => {
+  document.addEventListener("click", openHighlightMenu);
+  registerDestructor(api.container, () =>
+    document.removeEventListener("click", openHighlightMenu)
+  );
   api.registerRichEditorExtension(richEditorExtension);
   api.decorateCookedElement((element) => decorateHighlights(element), {
     id: "appinn-markdown-highlight",

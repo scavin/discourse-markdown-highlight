@@ -8,6 +8,8 @@ A Discourse **theme component**, tested on Discourse 2026.10. No server plugin, 
 
 Select text in the composer, click the highlighter button, then choose Default, Red, Orange, Yellow, Green, or Blue. Select highlighted text again to change its color or remove highlighting. In Markdown mode, a selection inside an existing highlight updates that entire highlight and preserves other emojis. Leading/trailing selection whitespace stays outside the markers; cross-line selections show a message and are left unchanged. An empty Markdown selection inserts a translated sample; an empty rich-editor selection changes the formatting for subsequent typing.
 
+In Markdown mode, click the opening `==` of an existing highlight to select its contents and open the same color menu. The closing `==`, normal text, and clicks that extend a selection do not open it.
+
 | Color | Stored Markdown |
 | --- | --- |
 | Default | `==text==` |

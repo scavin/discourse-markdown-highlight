@@ -1,4 +1,4 @@
-import { click, settled } from "@ember/test-helpers";
+import { click, settled, triggerEvent } from "@ember/test-helpers";
 import { module, test } from "qunit";
 import { forceMobile } from "discourse/lib/mobile";
 import { setupRenderingTest } from "discourse/tests/helpers/component-test";
@@ -48,6 +48,30 @@ module("Appinn highlight | rich editor", function (hooks) {
     assert.dom(".ProseMirror mark.appinn-highlight--red").doesNotExist();
   });
   for (const mobile of [false, true]) {
+    test(`opening delimiter opens the color menu on ${mobile ? "mobile" : "desktop"}`, async function (assert) {
+      if (mobile) {
+        forceMobile();
+      }
+      const source = "before ==🟢word== after";
+      const [editor] = await setupRichEditor(assert, source, {
+        withMenus: true,
+      });
+      await click(".composer-toggle-switch");
+      const input = document.querySelector("textarea.d-editor-input");
+      input.focus();
+      for (const position of [2, 12, 15]) {
+        input.setSelectionRange(position, position);
+        await triggerEvent(input, "click", { button: 0, detail: 1 });
+        assert.dom('[data-name="appinn-highlight-blue"]').doesNotExist();
+      }
+      input.setSelectionRange(8, 8);
+      await triggerEvent(input, "click", { button: 0, detail: 1 });
+      assert.dom('[data-name="appinn-highlight-blue"]').exists();
+      assert.strictEqual(editor.value, source, "opening does not edit text");
+      await click('[data-name="appinn-highlight-blue"]');
+      assert.strictEqual(editor.value, "before ==🔵word== after");
+    });
+
     test(`menu and Markdown selection on ${mobile ? "mobile" : "desktop"}`, async function (assert) {
       if (mobile) {
         forceMobile();

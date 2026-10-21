@@ -1,6 +1,10 @@
 import { apiInitializer } from "discourse/lib/api";
 import { i18n } from "discourse-i18n";
-import { COLORS, decorateHighlights, formatSelection } from "../lib/highlight.js";
+import {
+  COLORS,
+  decorateHighlights,
+  formatSelection,
+} from "../lib/highlight.js";
 import richEditorExtension from "../lib/rich-editor-extension.js";
 
 export default apiInitializer((api) => {

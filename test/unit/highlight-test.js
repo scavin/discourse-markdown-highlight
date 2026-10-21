@@ -1,3 +1,4 @@
+import { setupTest } from "ember-qunit";
 import { module, test } from "qunit";
 import { cook } from "discourse/lib/text";
 import {
@@ -6,7 +7,9 @@ import {
   formatSelection,
 } from "../../discourse/lib/highlight.js";
 
-module("Appinn highlight | webpage rendering", function () {
+module("Appinn highlight | webpage rendering", function (hooks) {
+  setupTest(hooks);
+
   test("colors, inline formatting, repeated decoration, and code boundaries", async function (assert) {
     const raw =
       "==普通== ==🔴红== ==🟠橙== ==🟡黄== ==🟢绿== ==🔵蓝==\n\n==**加粗** 和 [链接](https://example.com)==\n\n`==代码==`\n\n```\n==代码块==\n```\n\na == b\n\n==未闭合\n\n==跨段\n\n不可==";

@@ -1,10 +1,23 @@
 @mixin highlight-palette {
-  --appinn-highlight-default: light-dark(#fff0a6, #665311);
-  --appinn-highlight-red: light-dark(#ffd4d7, #743439);
-  --appinn-highlight-orange: light-dark(#ffdfb5, #765022);
-  --appinn-highlight-yellow: light-dark(#fff0a6, #665311);
-  --appinn-highlight-green: light-dark(#d7efba, #3a592b);
-  --appinn-highlight-blue: light-dark(#cce8ff, #294f73);
+  // Obsidian's default highlight and extended palette, at 40% opacity.
+  --appinn-highlight-default: rgb(255 208 0 / 40%);
+  --appinn-highlight-red: light-dark(
+    rgb(233 49 71 / 40%),
+    rgb(251 70 76 / 40%)
+  );
+  --appinn-highlight-orange: light-dark(
+    rgb(236 117 0 / 40%),
+    rgb(233 151 63 / 40%)
+  );
+  --appinn-highlight-yellow: var(--appinn-highlight-default);
+  --appinn-highlight-green: light-dark(
+    rgb(8 185 78 / 40%),
+    rgb(68 207 110 / 40%)
+  );
+  --appinn-highlight-blue: light-dark(
+    rgb(8 109 221 / 40%),
+    rgb(2 122 255 / 40%)
+  );
 }
 
 :root {

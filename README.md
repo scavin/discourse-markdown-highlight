@@ -19,6 +19,8 @@ Select text in the composer, click the highlighter button, then choose Default, 
 
 The six choices include Default (yellow). Emoji shortcode aliases, such as `==:large_green_circle:text==`, are accepted when Discourse has converted an emoji. Rich editing serializes colors using the Unicode markers above. Normal editor serialization can normalize whitespace and equivalent Markdown formatting.
 
+Colors use [Obsidian's default palette](https://docs.obsidian.md/Reference/CSS%20variables/Foundations/Colors) with 40% opacity. Default and Yellow share Obsidian's default yellow highlight (`#ffd000`); the other colors use its light/dark extended palette.
+
 Highlighting is inline: it does not span paragraphs, line breaks, code, embedded previews, or existing `<mark>` elements. Bold and links inside a highlight retain their behavior. Use inline code or fenced code to show literal `==text==`; Markdown escapes can be removed by the server before the component receives the HTML, so backslash escaping alone is not a reliable way to suppress this display-only enhancement.
 
 ## Rendering contract

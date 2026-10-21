@@ -26,7 +26,10 @@ export default apiInitializer((api) => {
       title: themePrefix("highlight.title"),
       popupMenu: {
         options: () =>
-          [...COLORS, { name: "remove" }].map((color) => ({
+          [
+            ...COLORS.filter((color) => color.name !== "default"),
+            { name: "remove" },
+          ].map((color) => ({
             name: `appinn-highlight-${color.name}`,
             icon: color.name === "remove" ? "eraser" : "circle",
             translatedLabel: i18n(themePrefix(`highlight.${color.name}`)),

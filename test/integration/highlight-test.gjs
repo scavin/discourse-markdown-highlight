@@ -85,6 +85,8 @@ module("Appinn highlight | rich editor", function (hooks) {
       input.setSelectionRange(4, 6);
       await click(".appinn-highlight");
       assert.dom('[data-name="appinn-highlight-blue"]').exists();
+      assert.dom('[data-name="appinn-highlight-default"]').doesNotExist();
+      assert.dom('[data-name="appinn-highlight-yellow"]').exists();
       if (
         new URLSearchParams(location.search).get("visual") ===
         (mobile ? "mobile" : "desktop")

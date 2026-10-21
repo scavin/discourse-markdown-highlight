@@ -3,7 +3,6 @@ zh_CN:
     description: "Markdown highlight colors and composer menu"
   highlight:
     title: "高亮颜色"
-    default: "默认"
     red: "红色"
     orange: "橙色"
     yellow: "黄色"

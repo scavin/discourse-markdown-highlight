@@ -1,9 +1,6 @@
 @mixin highlight-palette {
-  // Neutral default; named colors use Obsidian's palette at 40% opacity.
-  --appinn-highlight-default: light-dark(
-    rgb(128 128 128 / 25%),
-    rgb(160 160 160 / 30%)
-  );
+  // Obsidian's palette at 40% opacity; unmarked highlights are yellow.
+  --appinn-highlight-default: var(--appinn-highlight-yellow);
   --appinn-highlight-red: light-dark(
     rgb(233 49 71 / 40%),
     rgb(251 70 76 / 40%)

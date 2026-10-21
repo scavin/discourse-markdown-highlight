@@ -3,7 +3,6 @@ en:
     description: "Markdown highlight colors and composer menu"
   highlight:
     title: "Highlight"
-    default: "Default"
     red: "Red"
     orange: "Orange"
     yellow: "Yellow"

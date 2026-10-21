@@ -6,22 +6,22 @@ A Discourse **theme component**, tested on Discourse 2026.10. No server plugin, 
 
 ## Usage
 
-Select text in the composer, click the highlighter button, then choose Default, Red, Orange, Yellow, Green, or Blue. Select highlighted text again to change its color or remove highlighting. In Markdown mode, a selection inside an existing highlight updates that entire highlight and preserves other emojis. Leading/trailing selection whitespace stays outside the markers; cross-line selections show a message and are left unchanged. An empty Markdown selection inserts a translated sample; an empty rich-editor selection changes the formatting for subsequent typing.
+Select text in the composer, click the highlighter button, then choose Red, Orange, Yellow, Green, or Blue. Select highlighted text again to change its color or remove highlighting. In Markdown mode, a selection inside an existing highlight updates that entire highlight and preserves other emojis. Leading/trailing selection whitespace stays outside the markers; cross-line selections show a message and are left unchanged. An empty Markdown selection inserts a translated sample; an empty rich-editor selection changes the formatting for subsequent typing.
 
 In Markdown mode, click the opening `==` of an existing highlight to select its contents and open the same color menu. The closing `==`, normal text, and clicks that extend a selection do not open it.
 
 | Color | Stored Markdown |
 | --- | --- |
-| Default | `==text==` |
+| Yellow (no color marker) | `==text==` |
 | Red | `==🔴text==` |
 | Orange | `==🟠text==` |
 | Yellow | `==🟡text==` |
 | Green | `==🟢text==` |
 | Blue | `==🔵text==` |
 
-The six choices include Default (gray). Emoji shortcode aliases, such as `==:large_green_circle:text==`, are accepted when Discourse has converted an emoji. Rich editing serializes colors using the Unicode markers above. Normal editor serialization can normalize whitespace and equivalent Markdown formatting.
+The menu offers five colors and Remove Highlight, with no separate Default option. Unmarked `==text==` and explicitly yellow `==🟡text==` both display yellow. Emoji shortcode aliases, such as `==:large_green_circle:text==`, are accepted when Discourse has converted an emoji. Rich editing serializes colors using the Unicode markers above. Normal editor serialization can normalize whitespace and equivalent Markdown formatting.
 
-Default uses a neutral gray background adapted to light/dark mode. Named colors use [Obsidian's default palette](https://docs.obsidian.md/Reference/CSS%20variables/Foundations/Colors) with 40% opacity. Yellow uses Obsidian's default yellow highlight (`#ffd000`); the other colors use its light/dark extended palette.
+Colors use [Obsidian's default palette](https://docs.obsidian.md/Reference/CSS%20variables/Foundations/Colors) with 40% opacity. Yellow uses Obsidian's default yellow highlight (`#ffd000`); the other colors use its light/dark extended palette.
 
 Highlighting is inline: it does not span paragraphs, line breaks, code, embedded previews, or existing `<mark>` elements. Bold and links inside a highlight retain their behavior. Use inline code or fenced code to show literal `==text==`; Markdown escapes can be removed by the server before the component receives the HTML, so backslash escaping alone is not a reliable way to suppress this display-only enhancement.
 

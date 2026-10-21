@@ -51,6 +51,10 @@ Run Discourse's `bin/lint --fix themes/discourse-markdown-highlight` with the co
 
 Reuses the core rich-editor mark input rule to preserve bold and links, replaces the backtracking matcher with a single pass, preserves ordinary emojis on recoloring, and handles selection whitespace and unsupported cross-line selections. No dependencies or server changes were added.
 
+## 0.1.2
+
+Corrects the minimum Discourse version to `2026.10.0-latest`. The previous `2026.10.0` requirement referred to the stable release and incorrectly disabled the component on October development builds, including `2026.10.0-latest +500`.
+
 ## Continuous integration
 
 GitHub Actions uses [Discourse’s official theme workflow](https://github.com/discourse/.github/blob/v1/.github/workflows/discourse-theme.yml) on pushes to `main`, pull requests, and manual dispatch. It runs the official lint configurations, the component’s QUnit tests against the current Discourse `latest` branch, and English locale validation. No deployment or forum credentials are needed.

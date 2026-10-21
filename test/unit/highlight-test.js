@@ -5,10 +5,33 @@ import {
   decorateHighlights,
   findHighlights,
   formatSelection,
+  openHighlightMenu,
 } from "../../discourse/lib/highlight.js";
 
 module("Appinn highlight | webpage rendering", function (hooks) {
   setupTest(hooks);
+
+  test("delimiter shortcut finds a separate composer footer toolbar", function (assert) {
+    const fixture = document.createElement("div");
+    fixture.innerHTML =
+      '<div class="reply-area"><div class="d-editor-container"><textarea class="d-editor-input"></textarea></div><footer><button class="appinn-highlight"></button></footer></div><div class="reply-area"><button class="appinn-highlight"></button></div>';
+    const input = fixture.querySelector("textarea");
+    input.value = "==🟢word==";
+    input.setSelectionRange(1, 1);
+    let opened = 0;
+    fixture.querySelector("button").addEventListener("click", () => opened++);
+    fixture
+      .querySelectorAll("button")[1]
+      .addEventListener("click", () => assert.step("wrong composer"));
+    openHighlightMenu({ target: input, button: 0, detail: 1 });
+    assert.strictEqual(opened, 1);
+    assert.strictEqual(
+      input.value.slice(input.selectionStart, input.selectionEnd),
+      "word"
+    );
+    assert.strictEqual(input.value, "==🟢word==");
+    assert.verifySteps([]);
+  });
 
   test("colors, inline formatting, repeated decoration, and code boundaries", async function (assert) {
     const raw =

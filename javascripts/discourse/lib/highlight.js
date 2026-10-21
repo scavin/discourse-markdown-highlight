@@ -119,9 +119,11 @@ export function openHighlightMenu(event) {
     (highlight) =>
       position >= highlight.start && position <= highlight.start + 2
   );
-  const button = input
-    .closest(".d-editor-container")
-    ?.querySelector("button.appinn-highlight");
+  const button =
+    input
+      .closest(".d-editor-container")
+      ?.querySelector("button.appinn-highlight") ||
+    input.closest(".reply-area")?.querySelector("button.appinn-highlight");
   if (!match || !button) {
     return;
   }

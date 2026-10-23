@@ -132,7 +132,7 @@ export function openHighlightMenu(event) {
 }
 
 const SKIP =
-  "pre, code, kbd, script, style, textarea, mark, .onebox, .lightbox-wrapper";
+  "pre, kbd, script, style, textarea, mark, .onebox, .lightbox-wrapper";
 const BLOCK = "p, li, h1, h2, h3, h4, h5, h6, td, th, summary, blockquote, div";
 
 export function decorateHighlights(root) {
@@ -150,6 +150,9 @@ export function decorateHighlights(root) {
       } else if (node.nodeType === 1) {
         if (node.matches(SKIP) || node.tagName === "BR") {
           flush();
+        } else if (node.tagName === "CODE") {
+          // Treat inline code as one opaque character: its delimiters are literal.
+          parts.push({ node, text: "\uFFFC", inlineCode: true });
         } else if (node.matches("img.emoji")) {
           parts.push({ node, text: node.alt });
         } else if (node.matches(BLOCK)) {
@@ -183,7 +186,12 @@ function decorateRun(parts) {
         continue;
       }
       if (part.node.nodeType !== 3) {
-        if (part.start >= match.start && part.end <= match.from) {
+        if (part.inlineCode) {
+          const mark = document.createElement("mark");
+          mark.className = `appinn-highlight appinn-highlight--${match.color}`;
+          part.node.replaceWith(mark);
+          mark.append(part.node);
+        } else if (part.start >= match.start && part.end <= match.from) {
           part.node.remove();
         }
         continue;

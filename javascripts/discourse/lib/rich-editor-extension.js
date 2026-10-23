@@ -7,6 +7,9 @@ function tokenText(token) {
   if (token.type === "emoji") {
     return token.attrGet("alt");
   }
+  if (token.type === "code_inline") {
+    return "\uFFFC";
+  }
   return token.nesting ? "" : "\0";
 }
 
@@ -23,7 +26,11 @@ function parseInline(state, token) {
     const value = tokenText(child);
     const start = offset;
     offset += value.length;
-    if (child.type !== "text" && child.type !== "emoji") {
+    if (
+      child.type !== "text" &&
+      child.type !== "emoji" &&
+      child.type !== "code_inline"
+    ) {
       state.parseTokens([child]);
       continue;
     }
@@ -41,7 +48,7 @@ function parseInline(state, token) {
         state.openMark(
           state.schema.marks.appinn_highlight.create({ color: match.color })
         );
-        if (child.type === "emoji") {
+        if (child.type === "emoji" || child.type === "code_inline") {
           state.parseTokens([child]);
         } else {
           state.addText(value.slice(from - start, to - start));
@@ -51,7 +58,7 @@ function parseInline(state, token) {
       cursor = Math.min(offset, match.end);
     }
     if (cursor < offset) {
-      if (child.type === "emoji") {
+      if (child.type === "emoji" || child.type === "code_inline") {
         state.parseTokens([child]);
       } else {
         state.addText(value.slice(cursor - start));

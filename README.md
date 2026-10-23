@@ -23,7 +23,7 @@ The menu offers five colors and Remove Highlight, with no separate Default optio
 
 Colors use [Obsidian's default palette](https://docs.obsidian.md/Reference/CSS%20variables/Foundations/Colors) with 40% opacity. Yellow uses Obsidian's default yellow highlight (`#ffd000`); the other colors use its light/dark extended palette.
 
-Highlighting is inline: it does not span paragraphs, line breaks, code, embedded previews, or existing `<mark>` elements. Bold and links inside a highlight retain their behavior. Use inline code or fenced code to show literal `==text==`; Markdown escapes can be removed by the server before the component receives the HTML, so backslash escaping alone is not a reliable way to suppress this display-only enhancement.
+Highlighting is inline: it does not span paragraphs, line breaks, code blocks, embedded previews, or existing `<mark>` elements. Bold, links, and inline code inside a highlight retain their behavior. Delimiters inside code are always literal, including when inline code is enclosed by an outer highlight. Use inline code or fenced code to show literal `==text==`; Markdown escapes can be removed by the server before the component receives the HTML, so backslash escaping alone is not a reliable way to suppress this display-only enhancement.
 
 ## Rendering contract
 
@@ -54,6 +54,10 @@ Reuses the core rich-editor mark input rule to preserve bold and links, replaces
 ## 0.1.2
 
 Removes the minimum Discourse version restriction. The previous `2026.10.0` requirement referred to the stable release and incorrectly disabled the component on October development builds, including `2026.10.0-latest +500`.
+
+## 0.1.4
+
+Supports inline code inside an outer highlight in webpage rendering and rich-editor mode switching. Code content remains literal, so `==` inside backticks does not open or close a highlight.
 
 ## Continuous integration
 

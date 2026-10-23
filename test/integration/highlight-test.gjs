@@ -10,6 +10,21 @@ module("Appinn highlight | rich editor", function (hooks) {
     this.siteSettings.rich_editor = true;
   });
 
+  test("inline code inside a highlight survives mode switching", async function (assert) {
+    const source = "==🔴注意：开发者在首页写着：`从官网下载最新版软件`==";
+    const [editor] = await setupRichEditor(assert, source, { withMenus: true });
+    assert.dom(".ProseMirror code").hasText("从官网下载最新版软件");
+    assert
+      .dom(".ProseMirror")
+      .hasText("注意：开发者在首页写着：从官网下载最新版软件");
+    assert.dom(".ProseMirror mark.appinn-highlight--red").exists();
+    await click(".composer-toggle-switch");
+    assert.strictEqual(editor.value, source);
+    await click(".composer-toggle-switch");
+    assert.dom(".ProseMirror code").hasText("从官网下载最新版软件");
+    assert.dom(".ProseMirror mark.appinn-highlight--red").exists();
+  });
+
   test("parses, recolors, removes, and preserves code while switching modes", async function (assert) {
     const [editor] = await setupRichEditor(
       assert,

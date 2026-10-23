@@ -11,6 +11,45 @@ import {
 module("Appinn highlight | webpage rendering", function (hooks) {
   setupTest(hooks);
 
+  test("highlights can span opaque inline code", async function (assert) {
+    const code =
+      "开发者的 GitHub 账号暂时被封禁，请从官网下载最新版软件；可通过下方 Telegram 链接来反馈需求和问题。";
+    const root = document.createElement("div");
+    root.innerHTML = (
+      await cook(
+        `==🔴注意：开发者在首页写着：\`${code}\`==\n\n==🟡前 \`==literal==\` 后==\n\n\`==not highlighted==\`\n\n\`unrelated\` ==🔵blue==`
+      )
+    ).toString();
+    const originalCode = root.querySelector("code");
+    decorateHighlights(root);
+    assert.strictEqual(
+      root.querySelector("mark code"),
+      originalCode,
+      "preserves the code element"
+    );
+    assert.strictEqual(root.querySelector("mark code").textContent, code);
+    assert.strictEqual(
+      root.querySelector("p").textContent,
+      `注意：开发者在首页写着：${code}`
+    );
+    assert.true(
+      root.querySelector("p mark").classList.contains("appinn-highlight--red")
+    );
+    assert.strictEqual(
+      root.querySelectorAll("code")[1].textContent,
+      "==literal=="
+    );
+    assert.strictEqual(
+      root.querySelectorAll("code")[2].textContent,
+      "==not highlighted=="
+    );
+    assert.false(Boolean(root.querySelectorAll("code")[2].closest("mark")));
+    assert.false(Boolean(root.querySelectorAll("code")[3].closest("mark")));
+    const once = root.innerHTML;
+    decorateHighlights(root);
+    assert.strictEqual(root.innerHTML, once);
+  });
+
   test("delimiter shortcut finds a separate composer footer toolbar", function (assert) {
     const fixture = document.createElement("div");
     fixture.innerHTML =
